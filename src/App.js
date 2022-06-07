@@ -1,9 +1,11 @@
 import React from 'react'
+import Tabs from './Components/Tabs'
+import './App.css'
 
 const App = () => {
     return (
         <div>
-            Hello World
+            <Tabs />
         </div>
     )
 }
