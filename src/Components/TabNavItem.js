@@ -1,13 +1,19 @@
 import React from "react";
-const TabNavItem = ({ id, title, activeTab, setActiveTab }) => {
+const TabNavItem = ({ id, title, activeTab, setActiveTab, src }) => {
 
     const handleClick = () => {
-        setActiveTab(id);
+        if (id !== activeTab) {
+            setActiveTab(id);
+
+        } else {
+            setActiveTab('')
+        }
     };
 
     return (
         <li onClick={handleClick} className={activeTab === id ? "active" : ""}>
             {title}
+            <img src={src} alt={title} />
         </li>
     );
 };
