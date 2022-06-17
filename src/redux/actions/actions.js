@@ -1,6 +1,13 @@
-export const addUser = (user) => {
+export const addTodoAction = (todo) => {
     return {
-        type: 'users/addedUser',
-        payload: user
+        type: 'todos/addedTodo',
+        payload: todo
+    }
+}
+
+export const toggleTodoAction = (todoId) => {
+    return {
+        type: 'todos/toggleTodo',
+        payload: todoId
     }
 }

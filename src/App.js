@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
 // import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { addUser } from './redux/actions/actions'
+import { addTodo, toggleTodo } from './redux/actions/actions'
 
 
 const App = (props) => {
 
     const [input, setInput] = useState('')
     function handleSubmit(e) {
-        if (e.key === 'Enter') {
-            props.addUsers(input)
+        if (e.key === 'Enter' && input !== '') {
+            props.addTodos(input)
             setInput('')
         }
+    }
+
+    function toggleTodo(id) {
+        props.toggleTodo(id)
     }
 
 
@@ -19,28 +23,42 @@ const App = (props) => {
         <div>
             <h1>Hello App</h1>
             <input
+                value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleSubmit}
                 type="text" />
-            {
-                props.users && props.users.map(user => (
-                    <p>{user} welcome</p>
-                ))
-            }
-        </div>
+            <ul>
+                {
+                    props.todos && props.todos.map(todo => (
+                        <li key={todo.id}
+                            style={{ marginBottom: '15px' }}
+                        >
+                            <p style={{ display: 'inline', padding: '3px', backgroundColor: todo.isCompleted === true ? 'green' : 'red', color: todo.isCompleted === true ? 'yellow' : 'white' }}>
+                                {todo.name}
+                            </p>
+                            <button onClick={() => toggleTodo(todo.id)}>
+                                Complete
+                            </button>
+                        </li>
+                    ))
+                }
+            </ul>
+
+        </div >
     )
 }
 
 
 function mapStateToProps(state) {
     return {
-        users: state.users
+        todos: state.todos
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        addUsers: (user) => dispatch(addUser(user)),
+        addTodos: (todo) => dispatch(addTodo(todo)),
+        toggleTodo: (todoId) => dispatch(toggleTodo(todoId))
     }
 }
 
