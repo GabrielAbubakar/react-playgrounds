@@ -12,6 +12,7 @@ export const Card = styled.div`
   margin-bottom: 20px;
   border-radius: 3px;
   max-width: 450px;
+
 `;
 
 export const CardTitle = styled.div`

@@ -8,6 +8,7 @@ body {
     color: ${({ theme }) => theme.colors.text};
     font-family: monospace;
     overflow-x: hidden;
+    transition: all .2s ease;
   }
   
   // theme buttons color
