@@ -1,13 +1,14 @@
 import React from "react";
-import { motion, AnimatePresence } from 'framer-motion'
+// import { motion, AnimatePresence } from 'framer-motion'
 
 const TabContent = ({ id, activeTab, title, subtitle, content, src1, src2 }) => {
     return (
-        <AnimatePresence>
+        // <AnimatePresence>
+        <div>
             {
                 activeTab === id ? (
 
-                    <motion.div
+                    <div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         // exit={{ opacity: 0 }}
@@ -26,11 +27,12 @@ const TabContent = ({ id, activeTab, title, subtitle, content, src1, src2 }) => 
                             <img src={src2} alt="" />
                             <img src={src1} alt="" />
                         </div>
-                    </motion.div>
+                    </div>
                 )
                     : null
             }
-        </AnimatePresence>
+        </div>
+        // </AnimatePresence>
     );
 };
 
