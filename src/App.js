@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GlobalStyles } from "./components/styles/Global.styled";
 import { Header } from "./components/styles/Header.styled";
 import { Footer } from "./components/styles/Footer.styled";
@@ -6,13 +6,17 @@ import Quotes from "./components/Quotes";
 import { ThemeContainer, ThemeButton, } from "./components/styles/ThemeSwitching.styled";
 import { ThemeProvider } from "styled-components";
 import { light, dark, blue, green, brown, pink, } from "./components/styles/Theme.styled";
+// import CustomThemeProvider, { CustomThemeContext } from './context/CustomThemeContext';
+
 
 function App() {
+
+    // const { selectedTheme, handleThemeChange, setSelectedTheme } = useContext(CustomThemeContext)
 
 
     const [selectedTheme, setSelectedTheme] = useState(light);
 
-    const HandleThemeChange = (theme) => {
+    const handleThemeChange = (theme) => {
         setSelectedTheme(theme);
         localStorage.setItem("current-theme", JSON.stringify(theme));
     };
@@ -26,6 +30,8 @@ function App() {
 
 
     return (
+
+        // <CustomThemeProvider>
         <ThemeProvider theme={selectedTheme}>
             <div className="App">
                 <GlobalStyles />
@@ -35,22 +41,22 @@ function App() {
                     <span>Themes: </span>
                     <ThemeButton
                         className={`light ${selectedTheme === light ? "active" : ""}`}
-                        onClick={() => HandleThemeChange(light)}></ThemeButton>
+                        onClick={() => handleThemeChange(light)}></ThemeButton>
                     <ThemeButton
                         className={`dark ${selectedTheme === dark ? "active" : ""}`}
-                        onClick={() => HandleThemeChange(dark)}></ThemeButton>
+                        onClick={() => handleThemeChange(dark)}></ThemeButton>
                     <ThemeButton
                         className={`blue ${selectedTheme === blue ? "active" : ""}`}
-                        onClick={() => HandleThemeChange(blue)}></ThemeButton>
+                        onClick={() => handleThemeChange(blue)}></ThemeButton>
                     <ThemeButton
                         className={`green ${selectedTheme === green ? "active" : ""}`}
-                        onClick={() => HandleThemeChange(green)}></ThemeButton>
+                        onClick={() => handleThemeChange(green)}></ThemeButton>
                     <ThemeButton
                         className={`brown ${selectedTheme === brown ? "active" : ""}`}
-                        onClick={() => HandleThemeChange(brown)}></ThemeButton>
+                        onClick={() => handleThemeChange(brown)}></ThemeButton>
                     <ThemeButton
                         className={`pink ${selectedTheme === pink ? "active" : ""}`}
-                        onClick={() => HandleThemeChange(pink)}></ThemeButton>
+                        onClick={() => handleThemeChange(pink)}></ThemeButton>
                 </ThemeContainer>
 
                 <Quotes />
@@ -62,6 +68,8 @@ function App() {
                 </Footer>
             </div >
         </ThemeProvider>
+        // </CustomThemeProvider >
+
     );
 }
 
