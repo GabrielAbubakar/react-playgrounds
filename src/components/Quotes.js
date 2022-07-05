@@ -5,11 +5,19 @@ import {
     CardTitle,
     CardBody,
 } from "./styles/Cards.styled";
+import { light, dark, blue, green, brown, pink, } from '../components/styles/Theme.styled'
+import { useContext } from "react";
+import { ThemePreferenceContext } from "../App";
 
 const Quotes = () => {
+
+
+    const { selectedTheme, setSelectedTheme, handleThemeChange } = useContext(ThemePreferenceContext)
+
+
     return (
         <CardsContainer>
-            <Card>
+            <Card onClick={() => handleThemeChange(green)}>
                 <CardTitle>Bran Stark</CardTitle>
                 <CardBody>
                     <p>
